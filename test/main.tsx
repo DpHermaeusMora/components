@@ -9,6 +9,7 @@ createRoot(document.getElementById("root")!).render(
       onSearch={(query: string) => {
         console.log(query);
       }}
+      initialQuery={"Hello, World!"}
     />
   </>
 );

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import SVGSearch from "../assets/search.svg?react";
 import SVGTimes from "../assets/times.svg?react";
 
@@ -15,25 +15,13 @@ export default function Searchbar(props: Props) {
   const [isFocused, setIsFocused] = useState(false);
   const [query, setQuery] = useState(props.initialQuery || "");
 
-  const containerClassName = useMemo(
-    () =>
-      props.containerClassName === undefined ||
-      props.containerClassName === null
-        ? `pl-4 pr-4  flex items-center flex-auto rounded-3xl h-10 relative ${
-            isFocused ? `shadow-focus` : `around-shadow`
-          }`
-        : typeof props.containerClassName === "function"
-        ? props.containerClassName(isFocused)
-        : props.containerClassName,
-    [props.containerClassName, isFocused]
-  );
-  const inputClassName = useMemo(
-    () =>
-      `ml-3 border-none bg-transparent w-[calc(100%-55px)] h-full outline-none`,
-    [props.inputClassName]
-  );
+  const defaultContainerClassName = `pl-4 pr-4  flex items-center flex-auto rounded-3xl h-10 relative ${
+    isFocused ? `shadow-focus` : `around-shadow`
+  }`;
 
-  const iconSize = useMemo(() => props.iconSize || 30, [props.iconSize]);
+  const defaultInputClassName = `ml-3 border-none bg-transparent w-[calc(100%-55px)] h-full outline-none`;
+
+  const defaultIconSize = 30;
 
   useEffect(() => {
     setQuery(props.initialQuery || "");
@@ -56,14 +44,23 @@ export default function Searchbar(props: Props) {
   }
 
   return (
-    <div className={containerClassName}>
-      <SVGSearch width={iconSize} height={iconSize} />
+    <div
+      className={
+        typeof props.containerClassName === "function"
+          ? props.containerClassName(isFocused)
+          : props.containerClassName || defaultContainerClassName
+      }
+    >
+      <SVGSearch
+        width={props.iconSize || defaultIconSize}
+        height={props.iconSize || defaultIconSize}
+      />
       <input
         ref={inputRef}
         autoComplete="off"
         type="text"
         placeholder="search"
-        className={inputClassName}
+        className={props.inputClassName || defaultInputClassName}
         onKeyUp={handleKeyUp}
         onFocus={() => {
           setIsFocused(true);
@@ -87,7 +84,10 @@ export default function Searchbar(props: Props) {
             inputRef.current?.focus();
           }}
         >
-          <SVGTimes width={iconSize} height={iconSize} />
+          <SVGTimes
+            width={props.iconSize || defaultIconSize}
+            height={props.iconSize || defaultIconSize}
+          />
         </div>
       ) : null}
     </div>
