@@ -1,6 +1,6 @@
 index.html               
 package.json             
-/src    
+/lib    
 tsconfig.json            
 tsconfig.node.json       
 vite.config.ts

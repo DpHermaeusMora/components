@@ -20,7 +20,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "types": ["vite-plugin-svgr/client", "./lib/vite-env.d.ts"]
   },
-  "include": ["src/lib"]
+  "include": ["./lib"]
 }
