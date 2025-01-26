@@ -11,3 +11,27 @@
 .shadow-focus {
   box-shadow: 0px 0px 0px 4px #93c1ff;
 }
+
+.disable-select {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+.disable-select:focus {
+  @apply !outline-none;
+}
+
+.menu {
+  @apply z-30 right-0  absolute bg-white rounded-2xl around-shadow p-2;
+  .menu__item {
+    @apply rounded-xl pt-3 pb-3 pl-2 pr-2 mt-0.5 mb-0.5  cursor-pointer hover:bg-gray-50 font-bold disable-select;
+
+    & a {
+      @apply inline-block w-full;
+    }
+  }
+}
