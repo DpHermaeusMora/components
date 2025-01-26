@@ -12,12 +12,18 @@ jobs:
     name: "Main"
     runs-on: "ubuntu-latest"
     steps:
+      - name: Setup
         uses: actions/setup-node@v4.0.1
         with:
           node-version: 20.9.0
+
       - name: Checkout
         uses: actions/checkout@v2
-      - run: npm ci
-      - run: npm publish
+
+      - name: Ci
+        run: npm ci
+
+      - name: Publish
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
