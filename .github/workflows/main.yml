@@ -17,6 +17,8 @@ jobs:
         uses: actions/setup-node@v4.0.1
         with:
           node-version: 20.9.0
+          registry-url: "https://registry.npmjs.org"
+          scope: "@hermaeusmora"
 
       - name: Checkout
         uses: actions/checkout@v2
